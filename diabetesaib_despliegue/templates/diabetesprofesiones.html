@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Conoce la diabetes {% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+{% block content %}
+    <div id="box2">
+        <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline">Conoce la diabetes ></li>
+                <li style="display:inline"><a href="{% url 'diabetesprofesional' %}" style="text-decoration:none">Artículos</a></li>
+            </ul>
+        </div>
+    <h1>Estos son los artículos sobre diabetes más importantes del momento</h1>
+        <h2><em>Categorías:</em></h2>
+        {% for p in p %}
+        <a style="text-decoration:none" href="{% url 'categoriaarticulos1' p.id %}">{{p.nombre}}  | </a>
+
+        {% endfor %}
+   </div>
+
+{% for articulosposts in articulosposts %}
+
+  <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+    <h1> {{articulosposts.title}}</h1>
+      {% if articulosposts.image %}
+     <img src="{{articulosposts.image.url}}" width="180px" height="160px" style="float:left; margin-right:5px">
+      {% endif %}
+    <p style="text-align:justify">{{articulosposts.descripcion|safe}}</p><br>
+      <p>
+           Redactado por: {{articulosposts.author}} con fecha: {{articulosposts.published}}. </p><br>
+
+
+      <a href="{% url 'diabetesprofesionalextensa' articulosposts.codigo %}">Pincha aquí para tener más información</a><br>
+
+  </div>
+{% endfor %}
+
+
+{% endblock %}
+</body>
+</html>

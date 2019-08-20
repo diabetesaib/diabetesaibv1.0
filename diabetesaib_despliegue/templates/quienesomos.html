@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Qué es Diabetes AIB{% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+{% block content %}
+<div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px;">
+    <h1>¿Qué es Diabetes AIB?</h1>
+    <h2>Objetivos y valores</h2>
+    <p>Diabetes AIB es un proyecto cuyo objetivo principal es la divulgación del conocimiento de la diabetes mellitus tipo 1.
+        Para lograr dicho objetivo se ha creado la plataforma web: <a href="{% url 'inicio' %}">Diabetes AIB</a>. Este proyecto
+        se divide en 4 apartados. El primero de ellos se basa en la elaboración de <a href="{% url 'diabetesprofesional' %}">artículos</a>
+        que reflejan el conocimiento
+        científico  actual con respecto a la diabetes mellitus. El segundo apartado consta de <a href="{% url 'videosdivulgativos' %}">vídeos</a>
+        que explicarán conceptos
+    abstractos de la enfermedad. El siguiente apartado a destacar es la disposición de <a href="{% url 'cursosdivulgativos' %}">herramientas</a>
+        como cursos informartivos,
+    productos tecnológicos o softwares informáticos que favorezcan el empoderamientod e la persona con respecto a su
+    diabetes y que permitan mejorar el tratamiento para aumentar la calidad de vida. Por último, se va a apostar por
+    un sistema de <a href="{%  url 'listareflexiones' %}">reflexiones</a> sobre aspectos variados de la diabetes para conocer la opinión de vosotros y crear así una comunidad.
+    Desde Diabetes AIB también nos comprometemos a destapar a aquellos usuarios que se aprovechan de la diabetes para obtener fama
+    o dinero, pero por otro lado beneficiaremos a aquellas personas, instituciones y empresas que aporten valor a la comunidad
+    de personas con diabetes.</p>
+    <h2>Compromisos:</h2>
+    <p>Desde Diabetes AIB nos comprometemos a:<br>
+    -Ofrecer información verídica citando las fuentes.<br>
+    -Aquella información que provenga de reflexiones será explícitamente indicada.<br>
+    -Ofrecer información que contribuya a un intercambio de ideas entre la comunidad de manera respetuosa.<br>
+    -Luchar contra el fraude de productos milagrosos que curan la diabetes mellitus tipo 1.</p>
+    <h2>Sobre el autor:</h2>
+    <p>El autor de esta plataforma web es Adrián Idoate, bioquímico por la Universidad de Navarra, tiene un gran
+    compromiso con la diabetes tanto a nivel divulgativo como investigador. Ha realizado varios trabajos de divulgación y de
+    investigación en el campo de la diabetes. Para cualquier duda o posible colaboración el correo de contacto es:
+    <a href="mailto:info@diabetesaib.com" style="display:inline">info@diabetesaib.com</a></p>
+    <h2>Vídeo de bienvenida a Diabetes AIB</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZxQfYwJWpk4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% extends 'diabetesprofesiones.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="description" content="{{articulosposts.metacontenidos}}">
+    <title>{% block title %} {{articulosposts.cabecera}} {% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+{% block content %}
+
+  <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+      <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline">Conoce la diabetes ></li>
+                <li style="display:inline"><a href="{% url 'diabetesprofesional' %}" style="text-decoration:none">Artículos ></a></li>
+                <li style="display:inline">{{articulosposts.title}}</li>
+            </ul>
+                </div>
+        <h2><em>Categorías:</em></h2>
+           {% for p in p %}
+        <a style="text-decoration:none" href="{% url 'categoriaarticulos1' p.id %}">{{p.nombre}}  | </a>
+
+        {% endfor %}
+      <hr>
+    <h1>{{articulosposts.title}}</h1>
+     <p>{{articulosposts.content|safe}}</p>
+      {% if articulosposts.image1 %}
+      <h1 style="text-align:center">{{articulosposts.encabezado1}}</h1>
+       <img src="{{articulosposts.image1.url}}" width="480px" height="500px" style="margin-left:230px"><br>
+      <p style="text-align:center">{{articulosposts.piedefigura1}}</p>
+
+      {% endif %}
+
+      {% if articulosposts.bibliografia %}
+      <p><strong>Bibliografía: </strong>{{articulosposts.bibliografia|safe}}</p>
+      {% endif %}
+      {% if articulosposts.image2 %}
+      {{articulosposts.encabezado2}}
+       <img src="{{articulosposts.image2.url}}">
+      {{articulosposts.piedefigura2}}
+      {% endif %}
+      {% if articulosposts.image3 %}
+      {{articulosposts.encabezado3}}
+       <img src="{{articulosposts.image3.url}}">
+      {{articulosposts.piedefigura3}}
+      {% endif %}
+      {% if articulosposts.video %}
+      {{articulosposts.encabezadovideo}}
+      <iframe width="560" height="315" src="{{articulosposts.video}}" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      {{articulosposts.descripcionvideo|safe}}
+      {% endif %}
+   <p> Este artículo ha sido redactado por:  {{articulosposts.author}}
+       en fecha de: {{articulosposts.published|date:"SHORT_DATE_FORMAT"}}</p>
+    <a href="https://twitter.com/intent/tweet?screen_name=AibDiabetes&ref_src={% url 'diabetesprofesionalextensa' articulosposts.codigo %}" class="twitter-mention-button" data-show-count="false">Tweet to @AibDiabetes</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="fb-root"></div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+      <div class="fb-like" data-href="{% url 'diabetesprofesionalextensa' articulosposts.codigo %}" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            <h3>Coméntanos sus dudas sobre el artículo</h3>
+    <hr>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+    <div class="fb-comments" data-href="https://www.diabetesaib.com/conoce-la-diabetes/articulos/{{articulosposts.codigo}}/" data-width="" data-numposts="5"></div>
+
+
+
+  </div>
+<div id="box1">
+    <h1>Artículos sobre diabetes relacionados:</h1>
+    <hr>
+    {% for p1 in p1%}
+    <h1>{{p1.title}}</h1>
+    <p>{{p1.descripcion|safe}}</p>
+    <a href="{% url 'diabetesprofesionalextensa' p1.codigo %}">Pincha aquí para tener más información</a>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

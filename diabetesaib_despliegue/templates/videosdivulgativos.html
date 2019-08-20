@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="description" content="">
+    <title>{% block title %}Videos divulgativos{% endblock%}</title>
+</head>
+<body>
+{% block content %}
+    <div id="box2" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d8dadb;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline">Te encuentras en la sección de vídeos</li>
+            </ul>
+        </div>
+    <h1>¡Bienvenido a nuestros vídeos divulgativos sobre diabetes!</h1>
+    <h3><em>Categorías:</em></h3>
+    {% for p in p %}
+        <a style="text-decoration:none" href="{% url 'videosdivulgativoscategorias' p.id %}">{{p.nombre}}  | </a>
+    {% endfor %}
+    </div>
+{% for videos in videos %}
+<div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+    <h1>{{videos.titulo}}</h1>
+<iframe width="560" height="315" src="{{videos.url}}" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>{{videos.descripcion|safe}}</p>
+    <p>Este vídeo ha sido realizado por: {{videos.author}} a fecha: {{videos.created}}</p>
+            <a href="https://twitter.com/intent/tweet?screen_name=AibDiabetes&ref_src={{videos.url}}" class="twitter-mention-button" data-show-count="false">Tweet to @AibDiabetes</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br><br>
+<div id="fb-root"></div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+      <div class="fb-like" data-href="{{videos.url}}" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div><br><br>
+    <script src="https://apis.google.com/js/platform.js"></script>
+                <div class="g-ytsubscribe" data-channel="AnadiNavarra" data-layout="default" data-count="default"></div>
+</div>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

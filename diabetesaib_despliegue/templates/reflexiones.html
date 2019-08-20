@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Reflexiones{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+    <div id="box2" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d8dadb;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline">Conoce tu diabetes ></li>
+                <li style="display:inline"><a href="{% url 'listareflexiones' %}" style="text-decoration:none">Reflexiones</a></li>
+            </ul>
+        </div>
+    <h1>¡Bienvenido a nuestras reflexiones sobre la diabetes!</h1>
+    <h3>Seleccione aquella que te gustaría reflexionar conmigo</h3>
+    <h3><em>Categorías:</em></h3>
+{% for p in p %}
+<a href="{% url 'reflexionescategoriasvista' p.id %}" style="text-decoration:none">{{p.name}}  |</a>
+{% endfor %}
+    </div>
+{% for posts in posts %}
+  <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+
+<h1>{{posts.title}}</h1>
+      {% if posts.image %}
+      <img src="{{ posts.image.url }}" alt="miniatura" width="150px" height="150px" style="float:left">
+      {% endif %}
+
+<p style="text-align:justify">{{posts.descripcionbreve|safe}}</p><br><br>
+      <p>Redactado por {{posts.author}} con fecha de {{posts.published}}</p>
+<a href="{% url 'detallereflexiones' posts.codigo %}">Pinche aquí para leer la reflexión</a><br><br>
+  </div>
+{% endfor %}
+
+{% endblock %}
+
+
+</body>
+</html>

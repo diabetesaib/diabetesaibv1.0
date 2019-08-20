@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Inicio{% endblock %} | Diabetes AIB </title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+</head>
+
+<body>
+<div id="contenedor" style="margin-left:50px; margin-right:50px; margin-top:5px;">
+
+
+<div id="cabecera" style="background-color:#93ccf8;">
+    <div>
+        {% if not request.user.is_authenticated %}
+            <button style="cursor: pointer; margin-top:10px; margin-left:985px; margin-bottom:10px" onclick="location.href='{% url 'signup' %}'">Resgístrate</button>
+            <button style=" cursor: pointer" onclick="location.href='{% url 'login' %}'">Inicia sesión</button>
+
+        {% else %}
+            <button style="margin-left:1065px; margin-top:10px; margin-bottom:10px; cursor: pointer" onclick="location.href='{% url 'logout' %}'">Cerrar sesión</button>
+        {% endif %}
+
+    <form style="margin-left:1080px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick" />
+    <input type="hidden" name="hosted_button_id" value="K3NW2R6D29X3S" />
+    <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Botón Donar con PayPal" />
+    <img alt="" border="0" src="https://www.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+    </div>
+    <img src="{% static 'img/cabecerapaginaweb1.jpg' %}" alt="Logotipo" style="margin-left:200px">
+
+
+<nav id="navegacionprincipal" style="background-color:#86b8de">
+    <ul style="margin-left:30px">
+        <li><a href="{% url 'inicio' %}" style="text-decoration:none; font-size:20px;">INICIO</a></li>
+        <li><a href="{% url 'diabetesprofesional' %}" style="text-decoration:none; font-size:20px;">ARTÍCULOS</a></li>
+        <li><a href="{% url 'videosdivulgativos' %}" style="text-decoration:none; font-size:20px;">VÍDEOS</a></li>
+        <li><a href="{% url 'cursosdivulgativos' %}" style="text-decoration:none; font-size:20px;">CURSOS</a></li>
+        <li><a href="{% url 'listareflexiones' %}" style="text-decoration:none; font-size:20px;">REFLEXIONES</a></li>
+        <li><a href="{% url 'quienessomos' %}" style="text-decoration:none; font-size:20px;">SOBRE DIABETES AIB</a></li>
+    </ul>{% block contento %} {% endblock %}
+</nav>
+
+</div>
+     <aside id="cajaizquierda">
+         <h4>Menú de navegación</h4>
+            <ul style="text-align:left;">
+                <li><a href="{% url 'inicio' %}" style="text-decoration:none">Inicio</a></li>
+                <li><a href="{% url 'diabetesprofesional' %}"  style="text-decoration:none">Artículos</a></li>
+                <li><a href="{% url 'videosdivulgativos' %}"  style="text-decoration:none">Vídeos</a></li>
+                <li><a href="{% url 'cursosdivulgativos' %}"  style="text-decoration:none">Cursos</a></li>
+                <li><a href="{% url 'listareflexiones' %}"  style="text-decoration:none">Reflexiones</a></li>
+                <li><a href="{% url 'quienessomos' %}" style="text-decoration:none">Quienes somos</a></li>
+            </ul>
+        <h4>¡Ponte en contacto con nosotros!</h4>
+         <a href="{% url 'formulario' %}"  style="text-decoration:none">Pregunte su duda aquí</a>
+         <h4>!Mira nuestro último vídeo!</h4>
+         <iframe width="175" height="150" src="https://www.youtube.com/embed/Hm75z-Ze80s" frameborder="0"
+                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         <h4>!Haz posible crecer esta comunidad!</h4>
+             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="K3NW2R6D29X3S" />
+            <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Botón Donar con PayPal" />
+            <img alt="" border="0" src="https://www.paypal.com/es_ES/i/scr/pixel.gif" width="1" height="1" />
+            </form>
+         <h4>Programa de subida de contenido:</h4>
+         <ul style="text-align:left;">
+             <li>Domingo 1º del mes: <strong>Artículo</strong></li>
+             <li>Domingo 2º del mes: <strong>Vídeo</strong></li>
+             <li>Domingo 3º del mes: <strong>Artículo</strong></li>
+             <li>Domingo 4º del mes: <strong>Reflexión</strong></li>
+         </ul>
+    </aside>
+    <div id="tronco">
+
+
+{% block content %}
+        <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="ultimosposts">
+            <h1>!Estos son los últimos posts publicados!</h1>
+            <hr>
+            <h1>{{articulosposts.title}}</h1>
+            <p>{{articulosposts.metacontenidos}}</p>
+            <a href="{% url 'diabetesprofesionalextensa' articulosposts.codigo %}">Pincha aquí para tener más información</a>
+            <p>Publicado por: {{articulosposts.author}} con fecha de: {{articulosposts.created}}</p>
+            <hr>
+            <h1>{{reflexiones.title}}</h1>
+            <p>{{reflexiones.metacontent}}</p>
+            <a href="{% url 'detallereflexiones' reflexiones.codigo %}">Pincha aquí para tener más información</a>
+            <p>Publicado por: {{reflexiones.author}} con fecha de: {{reflexiones.created}}</p>
+
+        </div>
+        </div>
+            <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="ultimosvideos">
+            <h1>!Echale un vistazo a nuestros últimos vídeos!</h1>
+            <hr>
+            <h1>{{videosdivulgativos.titulo}}</h1>
+            <iframe width="560" height="315" src="{{videosdivulgativos.url}}" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Publicado por: {{videosdivulgativos.author}} con fecha de: {{videosdivulgativos.created}}</p>
+
+        </div>
+        </div>
+    <div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="ultimosvideos">
+            <h1>!Súmate a una nueva era del conocimiento con nuestros últimos cursos!</h1>
+            <hr>
+            <h1>{{cursosdivulgativos.titulo}}</h1>
+            <p>{{cursosdivulgativos.descripcion|safe}}</p>
+            <iframe width="560" height="315" src="{{cursosdivulgativos.videoprincipal}}" frameborder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <p>  <a href="{% url 'cursosdivulgativosextensos' cursosdivulgativos.codigo %}">Pincha aquí para tener más información</a><br>
+            <br>Publicado por: {{cursosdivulgativos.author}} con fecha de: {{cursosdivulgativos.created}}</p>
+        </div>
+        </div>
+        {% endblock %}
+
+</div>
+<footer>
+    <div id="cierre" style="background-color:#818b93;">
+    <img width=250px src="{% static 'img/cabecerafooter.png' %}">
+        <div style="text:white; margin-left:20px">
+    <h1>¡Síguenos a través de redes sociales!</h1>
+        </div>
+        <ul>
+            <li><a href="https://twitter.com/AibDiabetes?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @AibDiabetes</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></li>
+            <li><script src="https://apis.google.com/js/platform.js"></script>
+                <div class="g-ytsubscribe" data-channel="AnadiNavarra" data-layout="default" data-count="default"></div></li>
+            <li><a href="https://www.facebook.com/diabetes.aib.7"><input type="image" src="{% static 'img/facebook.jpg' %}"></a> </li>
+        </ul>
+        <h1 style="margin-left:20px">¡Ponte en contacto con nosotros!</h1>
+         <a href="{% url 'formulario' %}" style="margin-left:40px; text-decoration:none">Pregunte su duda aquí</a>
+        <div style="margin-top:50px;">
+        <ul>
+            <li style="display:inline"><a href="{% url 'politicadeprivacidad' %}" rel="nofollow">Política de privacidad</a></li>
+            <li style="display:inline"><a href="{% url 'politicadecookies' %}" rel="nofollow">Política de cookies</a></li>
+        </ul>
+        </div>
+        <div style="margin-left:40px; margin-top:20px;">
+            <h4>Diabetes AIB 2019 V.1.0</h4>
+        </div>
+
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#838391"
+    },
+    "button": {
+      "background": "#4b81e8"
+    }
+  },
+  "showLink": false,
+  "content": {
+    "message": "Esta página web utiliza cookies para ofrecerle una mejor experiencia de navegación",
+    "dismiss": "Aceptar"
+  }
+});
+</script>
+</body>
+</html>

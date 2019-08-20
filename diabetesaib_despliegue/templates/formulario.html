@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Formulario de inscripción{% endblock %}</title>
+
+</head>
+<body>
+    {% block content %}
+<div id="contacto" style="margin-left:100px; padding-left:200px; padding-right:200px">
+<h1> Pregunte sus dudas: </h1>
+    <p>Ponga un nombre para poder referirnos a usted y una cuenta de correo para reenviarle la respuesta. Estaremos encantados
+    de contestarle.</p>
+    <form action="" method="POST">
+        {% if 'ok' in request.GET %}
+        <p>Su mensaje se ha enviado correctamente, en breve le contestaremos. ¡Muchas gracias!</p>
+        {% endif %}
+        {% if 'fail' in request.GET %}
+        <p>Se ha producido un error, inténtelo de nuevo</p>
+        {% endif %}
+        {% csrf_token %}
+        <div>
+        <label>Nombre*:</label>
+            <div class="form-control" style="heigth:300px">
+            {{form.usuario}}
+            </div>
+            {{form.usuario.errors}}
+        </div>
+        <div>
+        <label>Email*:</label>
+            <div>
+        {{form.email}}
+            </div>
+            {{form.email.errors}}
+        </div>
+        <div>
+        <label>Comentario*:</label>
+            <div>
+        {{form.content}}
+            </div>
+            {{form.content.errors}}
+        </div>
+        <p>* Son campos obligatorios</p>
+        <input type="submit" value="Enviar" style="background-color:orange">
+    <table>
+    <!--{{form}}-->
+    </table>
+
+    </form>
+</div>
+    {% endblock %}
+
+</body>
+</html>

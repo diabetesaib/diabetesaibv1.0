@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cursos divulgativos</title>
+    <link href="{% static 'css/styledivulgativo.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+{% block content %}
+
+<div id="cursos">
+    <div id="box2" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d8dadb;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline">Conoce tu diabetes ></li>
+                <li style="display:inline"><a href="{% url 'cursosdivulgativos' %}" style="text-decoration:none">Cursos divulgativos</a></li>
+            </ul>
+        </div>
+    <h1>¡Bienvenido a nuestros cursos!</h1>
+    <h3>Seleccione el curso que más se adapte a sus necesidades</h3></div>
+{% for cursos in cursos %}
+<div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px;">
+    <h1>{{cursos.titulo}}</h1>
+    {% if cursos.imagen %}
+        <img src="{{cursos.imagen.url}}" alt="{{cursos.titulo}}" width="300px" height="230px" style="float:left; margin-right:20px; margin-left:5px">
+    {% endif %}
+    <p style="text-align:justify">{{cursos.descripcion|safe}}</p>
+    <p><strong>- Precio: </strong> {{cursos.precio}} euros</p>
+    {% if cursos.descuento %}
+    <p style="color:green"><{{cursos.descuento}}</p>
+    {% endif %}
+    <p><strong>- Duración: </strong>{{cursos.duracion}}</p>
+    <p><strong>- Recursos que contiene el curso: </strong>{{cursos.contenido}}</p><br>
+
+
+    <a href="{% url 'cursosdivulgativosextensos' cursos.codigo %}">Súmate en una nueva era del conocimiento</a><br>
+
+</div>
+{% endfor %}
+
+</div>
+{% endblock %}
+</body>
+</html>

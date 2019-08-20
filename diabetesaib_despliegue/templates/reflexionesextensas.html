@@ -1,0 +1,46 @@
+{% extends 'reflexiones.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{posts.title}}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+
+<div id="box1" style="-webkit-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    box-shadow: 0px 4px 20px 9px rgba(0,0,0,0.39);
+    background-color:#d6e1e6;
+    padding:10px;
+    border-radius: 40px 40px 40px 40px; margin-bottom:15px;">
+        <div id="anchortext">
+            <ul style="list-style:none">
+                <li style="display:inline"><a href="{% url 'listareflexiones' %}" style="text-decoration:none">Reflexiones ></a></li>
+                <li style="display:inline">{{posts.title}}</li>
+            </ul>
+        </div>
+            <h3><em>Categorías:</em></h3>
+    {% for p in p %}
+        <a href="{% url 'reflexionescategoriasvista' p.id %}" style="text-decoration:none">{{p.name}}  |</a>
+        {% endfor %}
+    <hr>
+<h1>{{posts.title}}</h1>
+<p>{{posts.content|safe}}</p>
+      <p>Redactado por {{posts.author}} con fecha de {{posts.published}}</p>
+        <a href="https://twitter.com/intent/tweet?screen_name=AibDiabetes&ref_src={% url 'detallereflexiones' posts.codigo %}" class="twitter-mention-button" data-show-count="false">Tweet to @AibDiabetes</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="fb-root"></div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+      <div class="fb-like" data-href="{% url 'detallereflexiones' posts.codigo %}" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+<div id="fb-root"></div>
+    <h3>¡Deja un comentario sobre lo que piensas!</h3>
+    <hr>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v4.0"></script>
+    <div class="fb-comments" data-href="https://www.diabetesaib.com/conoce-tu-diabetes/reflexiones/{{posts.codigo}}/" data-width="" data-numposts="5"></div>
+</div>
+{% endblock %}
+
+</body>
+</html>

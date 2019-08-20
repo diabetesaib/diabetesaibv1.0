@@ -1,0 +1,17 @@
+Alias /images/ "C:/Users/Adri97f1/Desktop/Proyectos2019/Diabetes AIB/diabetesaib despliegue/static/img/"
+<Directory "C:/Users/Adri97f1/Desktop/Proyectos2019\Diabetes AIB/diabetesaib despliegue/static/img>
+Order allow,deny
+Allow from all
+</Directory>
+
+WSGIScriptAlias / "C:/Users/Adri97f1/Desktop/Proyectos2019/Diabetes AIB/diabetesaib/apache/django.wsgi"
+
+<Directory "C:/Users/Adri97f1/Desktop/Proyectos2019/Diabetes AIB/diabetesaib/apache">
+Allow from all
+</Directory>
+
+<VirtualHost *:80>
+    DocumentRoot C:/Users/Adri97f1/Desktop/Proyectos2019/Diabetes AIB/diabetesaib
+    ServerName 127.0.0.1
+
+</VirtualHost>
